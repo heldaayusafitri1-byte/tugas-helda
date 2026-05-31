@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#042C53;
+    --deep:#0C447C;
+    --mid:#185FA5;
+    --sky:#378ADD;
+    --light:#B5D4F4;
+    --pale:#E6F1FB;
+    --accent:#EF9F27;
+    --white:#FAFCFF;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,44,83,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(55,138,221,0.2)}
+  .logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;letter-spacing:0.05em;color:var(--light)}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{font-size:0.82rem;font-weight:500;color:rgba(181,212,244,0.7);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s}
+  .nav-links a:hover{color:var(--white)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:6rem 3rem 4rem}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%, rgba(24,95,165,0.35) 0%, transparent 70%), radial-gradient(ellipse 50% 80% at 20% 80%, rgba(55,138,221,0.15) 0%, transparent 60%);pointer-events:none}
+  .rings{position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:600px;height:600px;pointer-events:none}
+  .ring{position:absolute;border-radius:50%;border:1px solid rgba(55,138,221,0.15);animation:pulse 6s ease-in-out infinite}
+  .ring:nth-child(1){width:200px;height:200px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(55,138,221,0.4);animation-delay:0s}
+  .ring:nth-child(2){width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:0.8s}
+  .ring:nth-child(3){width:480px;height:480px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:1.6s}
+  .ring:nth-child(4){width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:2.4s}
+  @keyframes pulse{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.8;transform:translate(-50%,-50%) scale(1.02)}}
+
+  .tree-icon{position:absolute;right:18%;top:50%;transform:translateY(-50%);opacity:0.06;font-size:28rem;line-height:1;user-select:none;filter:blur(1px)}
+
+  .hero-content{max-width:600px;position:relative;z-index:2}
+  .hero-tag{display:inline-block;font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);background:rgba(239,159,39,0.12);border:1px solid rgba(239,159,39,0.3);padding:0.35rem 0.9rem;border-radius:2rem;margin-bottom:2rem}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.2rem);line-height:1.1;font-weight:900;margin-bottom:1.5rem;color:#FAFCFF}
+  .hero h1 em{font-style:italic;color:var(--sky)}
+  .hero p{font-size:1rem;line-height:1.8;color:rgba(181,212,244,0.8);max-width:480px;margin-bottom:2.5rem}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--sky);color:var(--navy);font-weight:700;font-size:0.85rem;letter-spacing:0.05em;padding:0.85rem 2rem;border-radius:0.4rem;border:none;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+  .btn-primary:hover{background:var(--light);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--light);font-weight:500;font-size:0.85rem;letter-spacing:0.05em;padding:0.85rem 2rem;border-radius:0.4rem;border:1px solid rgba(181,212,244,0.35);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+  .btn-outline:hover{border-color:var(--light);background:rgba(181,212,244,0.07)}
+
+  /* STATS BAR */
+  .stats-bar{display:flex;gap:0;border-top:1px solid rgba(55,138,221,0.2);background:rgba(12,68,124,0.5)}
+  .stat{flex:1;padding:2rem;text-align:center;border-right:1px solid rgba(55,138,221,0.15)}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--sky);display:block}
+  .stat-label{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(181,212,244,0.6);margin-top:0.3rem}
+
+  /* SECTIONS */
+  section{padding:5rem 3rem}
+
+  /* ABOUT RPKH */
+  .about{background:rgba(12,68,124,0.25);border-top:1px solid rgba(55,138,221,0.1)}
+  .section-label{font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;color:var(--white);margin-bottom:1.5rem;line-height:1.2}
+  .section-title em{font-style:italic;color:var(--sky)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
+  .about-text p{font-size:0.95rem;line-height:1.9;color:rgba(181,212,244,0.75);margin-bottom:1rem}
+  .about-text p strong{color:var(--light)}
+  .def-box{background:linear-gradient(135deg,rgba(55,138,221,0.15),rgba(24,95,165,0.1));border:1px solid rgba(55,138,221,0.3);border-left:4px solid var(--sky);padding:1.5rem;border-radius:0.5rem;margin-top:1.5rem}
+  .def-box p{font-size:0.9rem;line-height:1.7;color:var(--light);font-style:italic}
+
+  /* KOMPONENS */
+  .komponen{background:var(--navy)}
+  .komponen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:1100px;margin:3rem auto 0}
+  .card{background:rgba(12,68,124,0.4);border:1px solid rgba(55,138,221,0.2);border-radius:0.8rem;padding:2rem;transition:all 0.3s;position:relative;overflow:hidden}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sky),transparent)}
+  .card:hover{transform:translateY(-4px);background:rgba(24,95,165,0.4);border-color:rgba(55,138,221,0.5)}
+  .card-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:rgba(55,138,221,0.2);line-height:1;margin-bottom:0.8rem}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--light);margin-bottom:0.8rem}
+  .card p{font-size:0.85rem;line-height:1.7;color:rgba(181,212,244,0.65)}
+  .card-tag{display:inline-block;font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:2rem;margin-bottom:1rem;background:rgba(55,138,221,0.15);color:var(--sky);border:1px solid rgba(55,138,221,0.25)}
+
+  /* TIMELINE */
+  .timeline-section{background:rgba(4,44,83,0.8);border-top:1px solid rgba(55,138,221,0.1);border-bottom:1px solid rgba(55,138,221,0.1)}
+  .timeline{max-width:800px;margin:3rem auto 0;position:relative;padding-left:2rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--sky),rgba(55,138,221,0.1))}
+  .tl-item{position:relative;padding:0 0 3rem 2.5rem}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-dot{position:absolute;left:-0.55rem;top:0.3rem;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--sky);border:2px solid var(--navy);box-shadow:0 0 0 4px rgba(55,138,221,0.2)}
+  .tl-period{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem}
+  .tl-item h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.6rem}
+  .tl-item p{font-size:0.88rem;line-height:1.7;color:rgba(181,212,244,0.7)}
+
+  /* CTA */
+  .cta{text-align:center;background:linear-gradient(135deg,rgba(24,95,165,0.4),rgba(4,44,83,1))}
+  .cta h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;margin-bottom:1rem}
+  .cta p{font-size:0.95rem;color:rgba(181,212,244,0.7);max-width:500px;margin:0 auto 2rem}
+
+  /* FOOTER */
+  footer{background:rgba(2,20,40,0.95);border-top:1px solid rgba(55,138,221,0.15);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  footer p{font-size:0.78rem;color:rgba(181,212,244,0.4)}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:rgba(181,212,244,0.6)}
+  .footer-logo span{color:var(--accent)}
+
+  @media(max-width:700px){
+    nav{padding:1rem 1.5rem}
+    .nav-links{display:none}
+    .hero{padding:5rem 1.5rem 3rem}
+    .about-grid{grid-template-columns:1fr}
+    .stats-bar{flex-wrap:wrap}
+    .stat{min-width:50%}
+    section{padding:3.5rem 1.5rem}
+    footer{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Manajemen<span>Hutan</span></div>
+  <div class="nav-links">
+    <a href="#">Beranda</a>
+    <a href="#">RPKH</a>
+    <a href="#">Komponen</a>
+    <a href="#">Referensi</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+  <div class="tree-icon">🌲</div>
+  <div class="hero-content">
+    <div class="hero-tag">📚 Bahan Kuliah — Semester Ganjil</div>
+    <h1>Rencana Pengaturan<br><em>Kelestarian Hasil</em><br>Hutan</h1>
+    <p>Memahami prinsip, metodologi, dan implementasi RPKH dalam pengelolaan hutan lestari berbasis ilmu kehutanan modern.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.querySelector('.about').scrollIntoView({behavior:'smooth'})">Mulai Belajar</button>
+      <button class="btn-outline" onclick="document.querySelector('.komponen').scrollIntoView({behavior:'smooth'})">Lihat Materi</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">10</span><span class="stat-label">Tahun RPKH</span></div>
+  <div class="stat"><span class="stat-num">3</span><span class="stat-label">Komponen Utama</span></div>
+  <div class="stat"><span class="stat-num">RPJP</span><span class="stat-label">Rencana Jangka Panjang</span></div>
+  <div class="stat"><span class="stat-num">KPH</span><span class="stat-label">Kesatuan Pemangkuan</span></div>
+</div>
+
+<section class="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Pengertian Dasar</div>
+      <h2 class="section-title">Apa itu <em>RPKH</em>?</h2>
+      <p>RPKH atau <strong>Rencana Pengaturan Kelestarian Hasil</strong> adalah dokumen perencanaan strategis pengelolaan hutan yang disusun oleh Kesatuan Pemangkuan Hutan (KPH) untuk jangka waktu tertentu.</p>
+      <p>RPKH memuat seluruh rencana kegiatan pengelolaan hutan yang mencakup inventarisasi, pembagian petak, pengaturan hasil, dan evaluasi berkala demi tercapainya <strong>kelestarian fungsi dan manfaat hutan</strong>.</p>
+      <div class="def-box">
+        <p>"RPKH merupakan instrumen pokok dalam manajemen hutan produksi yang menjamin keberlanjutan sumber daya hutan secara ekologi, ekonomi, dan sosial."</p>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">Hubungan Dengan RPJP</div>
+      <h2 class="section-title">RPKH & <em>RPJP</em></h2>
+      <p>RPKH memiliki keterkaitan erat dengan <strong>Rencana Pengelolaan Jangka Panjang (RPJP)</strong>. RPJP adalah dokumen induk yang menetapkan visi dan arah pengelolaan hutan dalam jangka 10 tahun atau lebih.</p>
+      <p>Sementara itu, RPKH berfungsi sebagai <strong>dokumen operasional</strong> yang menjabarkan target RPJP ke dalam rencana kegiatan yang lebih teknis dan terukur per petak atau per tahun anggaran.</p>
+      <p>Keduanya merupakan satu kesatuan hierarki perencanaan yang tidak dapat dipisahkan dalam sistem tata kelola hutan modern di Indonesia.</p>
+    </div>
+  </div>
+</section>
+
+<section class="komponen">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label" style="text-align:center">Struktur Materi</div>
+    <h2 class="section-title" style="text-align:center">Komponen <em>Utama</em> RPKH</h2>
+    <div class="komponen-grid">
+
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-tag">Inventarisasi</div>
+        <h3>Data &amp; Inventarisasi Hutan</h3>
+        <p>Pengumpulan data tegakan, kondisi lahan, keanekaragaman hayati, dan potensi kayu/non-kayu sebagai dasar penyusunan RPKH yang akurat.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-tag">Pembagian Petak</div>
+        <h3>Petak &amp; Blok Kerja</h3>
+        <p>Pembagian kawasan hutan ke dalam petak-petak kerja yang sistematis untuk memudahkan pengaturan gilir tebang dan monitoring kondisi hutan.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">03</div>
+        <div class="card-tag">Pengaturan Hasil</div>
+        <h3>Jatah Tebangan (AAC)</h3>
+        <p>Penetapan Annual Allowable Cut (AAC) berdasarkan perhitungan etat volume atau etat luas guna menjamin kelestarian produksi kayu jangka panjang.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">04</div>
+        <div class="card-tag">Rehabilitasi</div>
+        <h3>Rencana Reboisasi &amp; Rehabilitasi</h3>
+        <p>Program penanaman kembali areal bekas tebangan dan lahan kritis untuk memulihkan fungsi ekologis serta menjaga tutupan hutan.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">05</div>
+        <div class="card-tag">Perlindungan</div>
+        <h3>Perlindungan Hutan</h3>
+        <p>Rencana pencegahan dan pengendalian gangguan hutan seperti kebakaran, illegal logging, perambahan, dan serangan hama penyakit.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-num">06</div>
+        <div class="card-tag">Monitoring</div>
+        <h3>Evaluasi &amp; Pelaporan</h3>
+        <p>Sistem pemantauan berkala terhadap pelaksanaan rencana, capaian target produksi, serta umpan balik untuk revisi RPKH periode berikutnya.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">Alur Penyusunan</div>
+    <h2 class="section-title">Tahapan Penyusunan <em>RPKH</em></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Tahap 1</div>
+        <h3>Pengumpulan Data Lapangan</h3>
+        <p>Inventarisasi hutan menyeluruh meliputi survei tegakan, pemetaan batas petak, dan pengukuran potensi kayu serta non-kayu di seluruh kawasan KPH.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Tahap 2</div>
+        <h3>Analisis &amp; Perhitungan Etat</h3>
+        <p>Pengolahan data inventarisasi untuk menghitung jatah tebangan lestari (AAC) menggunakan metode etat volume, etat luas, atau kombinasi keduanya.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Tahap 3</div>
+        <h3>Penyusunan Dokumen RPKH</h3>
+        <p>Penulisan dokumen resmi yang memuat peta petak, rencana tebangan, rencana tanam, anggaran, dan indikator kinerja selama periode 10 tahun.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Tahap 4</div>
+        <h3>Pengesahan &amp; Implementasi</h3>
+        <p>Pengesahan dokumen oleh Kementerian LHK atau Dinas Kehutanan, dilanjutkan dengan implementasi kegiatan tahunan sesuai rencana yang telah ditetapkan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="section-label">Referensi Lanjutan</div>
+  <h2 class="section-title">Pelajari Lebih Dalam</h2>
+  <p>Eksplorasi regulasi, studi kasus, dan metode terbaru dalam penyusunan RPKH berbasis data spasial dan pendekatan ekosistem.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <button class="btn-primary" onclick="sendPrompt('Jelaskan lebih detail tentang perhitungan etat dan AAC dalam RPKH')">Metode Perhitungan Etat ↗</button>
+    <button class="btn-outline" onclick="sendPrompt('Apa perbedaan RPKH dan RPJP dalam manajemen hutan Indonesia?')">Perbedaan RPKH vs RPJP ↗</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Manajemen<span>Hutan</span></div>
+  <p>Bahan Kuliah — Ilmu Kehutanan &nbsp;·&nbsp; RPKH &amp; RPJP</p>
+  <p>Dibuat dari materi: Bahan_Kuliah_Manajeman_Hutan.pptx</p>
+</footer>
+
+</body>
+</html>
